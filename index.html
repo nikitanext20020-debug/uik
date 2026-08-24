@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Поиск УИК — Богородский городской округ</title>
+<meta name="description" content="Найдите УИК, первичное отделение и депутата по адресу">
+<link rel="preconnect" href="">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232783DE'/%3E%3Cpath d='M9 21.5 15 10l6 11.5' stroke='white' stroke-width='2.4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="badge-src">Постановление № 859 от 07.04.2026</div>
+    <h1>Кто ваш УИК?</h1>
+    <p class="sub">Введите адрес — покажем участок, первичное отделение и закреплённого депутата.<br>Можно без запятых и точек: <b>Ногинск самодеятельная 10</b></p>
+
+    <div class="searchbox" role="search">
+      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4 4"/></svg>
+      <input id="q" type="search" autocomplete="off" autocapitalize="off" spellcheck="false"
+             placeholder="город / посёлок, улица, дом…" aria-label="Поиск адреса">
+      <button id="clear" class="clear" type="button" aria-label="Очистить" hidden>×</button>
+    </div>
+    <div class="chips" id="chips"></div>
+  </header>
+
+  <main id="results" aria-live="polite"></main>
+
+  <footer class="foot">
+    <span id="stats"></span>
+    <span class="dot">·</span>
+    <span>Данные: постановление № 859 и привязка ПО к УИК</span>
+  </footer>
+</div>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
