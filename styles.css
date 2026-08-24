@@ -20,19 +20,19 @@
   }
 }
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;overflow-x:hidden}
+html,body{margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
 body{
   background:var(--canvas); color:var(--text);
   font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   -webkit-font-smoothing:antialiased;
   -webkit-tap-highlight-color:transparent;
-  overscroll-behavior-y:none;
+  overflow-x:clip;
 }
 
 /* фоновое свечение */
 .glow{
-  position:fixed; inset:-30vh -10vw auto; height:70vh; z-index:-1; pointer-events:none;
+  position:fixed; inset:0 0 auto 0; height:74vh; z-index:-1; pointer-events:none;
   background:
     radial-gradient(38vw 38vh at 22% 40%, rgba(39,131,222,.16), transparent 70%),
     radial-gradient(34vw 34vh at 78% 30%, rgba(91,91,214,.14), transparent 70%);
@@ -71,7 +71,7 @@ h1{font-size:clamp(30px,7vw,46px);line-height:1.1;letter-spacing:-.03em;margin:0
 
 /* ---------- поиск ---------- */
 .searchwrap{
-  position:sticky; top:0; z-index:20; padding:18px 0 12px;
+  position:relative; z-index:2; padding:18px 0 12px;
   background:linear-gradient(var(--canvas) 72%, rgba(255,255,255,0));
 }
 @media (prefers-color-scheme: dark){
@@ -171,9 +171,9 @@ mark{background:var(--blue-soft);color:inherit;padding:0 3px;border-radius:4px;f
 }
 .btn-yes:hover{transform:translateY(-1px);box-shadow:0 10px 22px -8px rgba(39,131,222,.9)}
 .btn-yes:active{transform:scale(.98)}
-.runaway{position:relative;flex:1 1 210px;min-width:190px;height:48px}
+.runaway{position:relative;flex:1 1 210px;min-width:190px;height:48px;touch-action:pan-y}
 .btn-no{
-  position:absolute; left:0; top:2px;
+  position:absolute; left:0; top:2px; touch-action:pan-y;
   background:var(--soft); border-color:var(--border); color:var(--text2);
   white-space:nowrap;
   transition:left .34s cubic-bezier(.34,1.4,.64,1), top .34s cubic-bezier(.34,1.4,.64,1),
@@ -206,7 +206,7 @@ mark{background:var(--blue-soft);color:inherit;padding:0 3px;border-radius:4px;f
   .wrap{padding:22px 14px calc(40px + env(safe-area-inset-bottom))}
   .hero{padding-bottom:6px}
   .sub{font-size:15px}
-  .searchwrap{padding:12px 0 10px;margin:0 -14px;padding-left:14px;padding-right:14px}
+  .searchwrap{padding:12px 0 10px}
   #q{font-size:16px;padding:14px 0}
   .chips{
     flex-wrap:nowrap; overflow-x:auto; justify-content:flex-start;

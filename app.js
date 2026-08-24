@@ -364,9 +364,24 @@
       move();
     }
 
-    btn.addEventListener('mouseenter', flee);
-    btn.addEventListener('pointerdown', flee);
-    btn.addEventListener('touchstart', flee, { passive: false });
+    var tap = null;
+    // мышь/стилус: реагируем на нажатие, а не на наведение
+    btn.addEventListener('pointerdown', function (ev) {
+      if (!ev.pointerType || ev.pointerType === 'mouse' || ev.pointerType === 'pen') flee(ev);
+    });
+    // тач: слушаем пассивно, чтобы не ломать скролл страницы
+    btn.addEventListener('touchstart', function (ev) {
+      var t0 = ev.touches && ev.touches[0];
+      tap = t0 ? { x: t0.clientX, y: t0.clientY, t: Date.now() } : null;
+    }, { passive: true });
+    btn.addEventListener('touchend', function (ev) {
+      var t0 = ev.changedTouches && ev.changedTouches[0];
+      if (!tap || !t0) { tap = null; return; }
+      var dx = Math.abs(t0.clientX - tap.x), dy = Math.abs(t0.clientY - tap.y);
+      var dt = Date.now() - tap.t;
+      tap = null;
+      if (dx < 16 && dy < 16 && dt < 800) flee(ev);   // тап, а не свайп-скролл
+    });
     btn.addEventListener('click', flee);
   }
 
@@ -438,7 +453,6 @@
     DATA.uiks.length + ' \u0443\u0447\u0430\u0441\u0442\u043a\u043e\u0432 \u00b7 ' + DATA.entries.length + ' \u0430\u0434\u0440\u0435\u0441\u043d\u044b\u0445 \u0437\u0430\u043f\u0438\u0441\u0435\u0439';
 
   render('');
-  if (window.innerWidth > 640) $q.focus();
 
   window.__uikSearch = search; // для автотестов
 })();
