@@ -184,7 +184,7 @@
         if (!locHit && !singleWord) return;
       }
       var stS = 0, stFull = false, locOnly = false;
-      if (q.streetToks.length) {
+      if (q.streetToks.length && !singleWord) {
         if (!e.streetToks.length) {
           if (!locHit) return;
           stS = 0.08; locOnly = true;
